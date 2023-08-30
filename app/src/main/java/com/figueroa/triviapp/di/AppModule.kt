@@ -1,6 +1,7 @@
 package com.figueroa.triviapp.di
 
 import com.figueroa.triviapp.network.QuestionAPI
+import com.figueroa.triviapp.repository.QuestionRepository
 import com.figueroa.triviapp.util.Constants
 import dagger.Module
 import dagger.Provides
@@ -13,6 +14,11 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object AppModule {
+
+    @Singleton
+    @Provides
+    fun provideQuestionRepository(API: QuestionAPI) = QuestionRepository(API)
+
     @Singleton
     @Provides
     fun provideQuestionAPI(): QuestionAPI {
